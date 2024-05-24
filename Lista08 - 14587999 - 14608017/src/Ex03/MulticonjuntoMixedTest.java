@@ -1,56 +1,94 @@
 package Ex03;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MulticonjuntoMixedTest {
 
     @Test
-    public void testAdditionAndEquality() {
-        MulticonjuntoArrayList<Integer> arrayListMultiset = new MulticonjuntoArrayList<>();
-        MulticonjuntoSet<Integer> setMultiset = new MulticonjuntoSet<>();
-        
-        // Adicionando elementos em ambas as estruturas
-        arrayListMultiset.add(1);
-        arrayListMultiset.add(2);
-        arrayListMultiset.add(2);
+    public void testMulticonjuntoArrayList() {
+        MulticonjuntoArrayList<Integer> multiconjunto1 = new MulticonjuntoArrayList<>();
+        multiconjunto1.add(1);
+        multiconjunto1.add(2);
+        multiconjunto1.add(2);
 
-        setMultiset.add(1);
-        setMultiset.add(2);
-        setMultiset.add(2);
+        MulticonjuntoArrayList<Integer> multiconjunto2 = new MulticonjuntoArrayList<>();
+        multiconjunto2.add(1);
+        multiconjunto2.add(2);
+        multiconjunto2.add(2);
 
-        // Comparando se ambas as estruturas têm os mesmos elementos
-        assertEquals(arrayListMultiset.getSize(), setMultiset.getElementos().size());
-        assertTrue(setMultiset.getElementos().containsKey(1) && setMultiset.getCount(1) == 2);
-        assertTrue(setMultiset.getElementos().containsKey(2) && setMultiset.getCount(2) == 2);
+        assertTrue(multiconjunto1.equals(multiconjunto2), "Os multiconjuntos devem ser iguais");
+
+        MulticonjuntoArrayList<Integer> multiconjunto3 = new MulticonjuntoArrayList<>();
+        multiconjunto3.add(3);
+        multiconjunto3.addAll(multiconjunto1);
+
+        assertEquals("MulticonjuntoArrayList{elements=[3, 1, 2, 2]}", multiconjunto3.toString(), "A junção dos multiconjuntos não está correta");
     }
 
     @Test
-    public void testAddAllFromDifferentTypes() {
-        MulticonjuntoArrayList<Integer> arrayListMultiset = new MulticonjuntoArrayList<>();
-        MulticonjuntoSet<Integer> setMultiset = new MulticonjuntoSet<>();
-        
-        arrayListMultiset.add(1);
-        setMultiset.add(2);
-        setMultiset.add(2);
-        setMultiset.add(3);
+    public void testMulticonjuntoSet() {
+        MulticonjuntoSet<Integer> multiconjunto1 = new MulticonjuntoSet<>();
+        multiconjunto1.add(1);
+        multiconjunto1.add(2);
+        multiconjunto1.add(2);
 
-        // Testando adição de todos os elementos de um MulticonjuntoSet em um MulticonjuntoArrayList
-        arrayListMultiset.addAll(convertSetToList(setMultiset));
+        MulticonjuntoSet<Integer> multiconjunto2 = new MulticonjuntoSet<>();
+        multiconjunto2.add(1);
+        multiconjunto2.add(2);
 
-        // Verifica se todos os elementos foram adicionados corretamente
-        assertEquals(4, arrayListMultiset.getSize());
-        assertTrue(arrayListMultiset.containsAll(java.util.Arrays.asList(2, 2, 3)));
+        assertTrue(multiconjunto1.equals(multiconjunto2), "Os multiconjuntos devem ser iguais");
+
+        MulticonjuntoSet<Integer> multiconjunto3 = new MulticonjuntoSet<>();
+        multiconjunto3.add(3);
+        multiconjunto3.addAll(multiconjunto1);
+
+        assertEquals("MulticonjuntoSet{elements=[1, 2, 3]}", multiconjunto3.toString(), "A junção dos multiconjuntos não está correta");
     }
 
-    // Helper method to convert a MulticonjuntoSet to a MulticonjuntoArrayList
-    private MulticonjuntoArrayList<Integer> convertSetToList(MulticonjuntoSet<Integer> setMultiset) {
-        MulticonjuntoArrayList<Integer> result = new MulticonjuntoArrayList<>();
-        setMultiset.getElementos().forEach((element, count) -> {
-            for (int i = 0; i < count; i++) {
-                result.add(element);
-            }
-        });
-        return result;
+    @Test
+    public void testMulticonjuntoLinkedList() {
+        MulticonjuntoLinkedList<Integer> multiconjunto1 = new MulticonjuntoLinkedList<>();
+        multiconjunto1.add(1);
+        multiconjunto1.add(2);
+        multiconjunto1.add(2);
+
+        MulticonjuntoLinkedList<Integer> multiconjunto2 = new MulticonjuntoLinkedList<>();
+        multiconjunto2.add(1);
+        multiconjunto2.add(2);
+        multiconjunto2.add(2);
+
+        assertTrue(multiconjunto1.equals(multiconjunto2), "Os multiconjuntos devem ser iguais");
+
+        MulticonjuntoLinkedList<Integer> multiconjunto3 = new MulticonjuntoLinkedList<>();
+        multiconjunto3.add(3);
+        multiconjunto3.addAll(multiconjunto1);
+
+        assertEquals("MulticonjuntoLinkedList{elements=[3, 1, 2, 2]}", multiconjunto3.toString(), "A junção dos multiconjuntos não está correta");
     }
+
+    @Test
+    public void testMulticonjuntoStack() {
+        MulticonjuntoStack<Integer> multiconjunto1 = new MulticonjuntoStack<>();
+        multiconjunto1.add(1);
+        multiconjunto1.add(2);
+        multiconjunto1.add(2);
+
+        MulticonjuntoStack<Integer> multiconjunto2 = new MulticonjuntoStack<>();
+        multiconjunto2.add(1);
+        multiconjunto2.add(2);
+        multiconjunto2.add(2);
+
+        assertTrue(multiconjunto1.equals(multiconjunto2), "Os multiconjuntos devem ser iguais");
+
+        MulticonjuntoStack<Integer> multiconjunto3 = new MulticonjuntoStack<>();
+        multiconjunto3.add(3);
+        multiconjunto3.addAll(multiconjunto1);
+
+        assertEquals("MulticonjuntoStack{elements=[3, 1, 2, 2]}", multiconjunto3.toString(), "A junção dos multiconjuntos não está correta");
+    }
+    
+    
 }
+

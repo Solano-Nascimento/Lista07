@@ -27,9 +27,19 @@ public class MulticonjuntoArrayList<T> {
     }
 
     public boolean equals(Object o) {
+    	
+    	// verifica se as referências dos dois objetos são exatamente as mesmas
         if (this == o) return true;
+        // verifica se o objeto passado como parâmetro é uma instância da classe MulticonjuntoArrayList
         if (!(o instanceof MulticonjuntoArrayList)) return false;
         MulticonjuntoArrayList<?> that = (MulticonjuntoArrayList<?>) o;
+        // compara o conteúdo dos dois objetos
         return this.elementos.containsAll(that.elementos) && that.elementos.containsAll(this.elementos);
+    }
+    @Override
+    public String toString() {
+    	return "MulticonjuntoArrayList{" +
+                "elements=" + elementos +
+                '}';
     }
 }

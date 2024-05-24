@@ -51,8 +51,6 @@ public class FatorialControllerTest {
 	public void setUp() {
 		
         FatorialView janela = new FatorialView();
-
-        System.out.println("Aqui");
 		calculateButton = janela.getButton();
 		inputField = janela.getInputField();
 		resultArea = janela.getResultArea();
@@ -73,7 +71,7 @@ public class FatorialControllerTest {
     public void testFatorialNegative() throws InterruptedException {
     	inputField.setText("-10");
     	calculateButton.doClick();
-    	Thread.sleep(1000);
+    	Thread.sleep(100);
     	assertEquals("Erro ao calcular fatorial.", resultArea.getText());
     	}
     
@@ -81,7 +79,7 @@ public class FatorialControllerTest {
     public void testFatorialInvalid() throws InterruptedException {
     	inputField.setText("ab");
     	calculateButton.doClick();
-    	Thread.sleep(1000);
+    	Thread.sleep(100);
     	 assertEquals("Por favor, insira um número inteiro válido.", TestableOptionPane.getLastMessage());
     }
 

@@ -17,10 +17,21 @@ public class MulticonjuntoStack<T> {
         this.elementos.addAll(m.elementos);
     }
 
+    public int size() {
+        return elementos.size();
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof MulticonjuntoStack)) return false;
         MulticonjuntoStack<?> that = (MulticonjuntoStack<?>) o;
         return this.elementos.equals(that.elementos);
+    }
+    
+    @Override
+    public String toString() {
+    	return "MulticonjuntoStack{" +
+                "elements=" + elementos +
+                '}';
     }
 }
